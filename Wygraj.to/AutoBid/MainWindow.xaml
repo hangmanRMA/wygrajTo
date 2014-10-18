@@ -1,0 +1,14 @@
+﻿<Window x:Class="AutoBid.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:AutoBid.Controls"
+        Title="MainWindow" Height="350" Width="525"
+        xmlns:ViewModels="clr-namespace:AutoBid.ViewModels">
+    <Window.DataContext>
+        <ViewModels:MainViewModel/>
+    </Window.DataContext>
+    <DockPanel LastChildFill="True">
+        <controls:LoginControl DockPanel.Dock="Top"/>
+        <controls:MainControl/>
+    </DockPanel>
+</Window>

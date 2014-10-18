@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="AutoBid.Controls.MainControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             Visibility="{Binding MainControlVisibility}"
+             xmlns:ViewModels="clr-namespace:AutoBid.ViewModels" Height="auto" Width="auto">
+    <Control.Resources>
+        <Style TargetType="Label" x:Key="labelStyle">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+    </Control.Resources>
+    <DockPanel LastChildFill="True">
+
+        <!--Region(Details)-->
+        <StackPanel DockPanel.Dock="Right">
+            <Label Content="Wystawia" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Ellipse Fill="#FFF4F4F5" 
+                     Height="20" 
+                     Stroke="Black" 
+                     Width="20"
+                     Margin="20"/>
+
+            <Label Content="Ostatnie logowanie" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Label Content="{Binding LoginTime, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ResourceKey=labelStyle}"/>
+
+            <Label Content="Czas działania" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Label Content="{Binding ActiveTimeSpan}" Style="{StaticResource ResourceKey=labelStyle}"/>
+
+            <Label Content="Zalicytowano" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Label Content="{Binding BidCounter}" Style="{StaticResource ResourceKey=labelStyle}"/>
+
+            <Label Content="Aktywny" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Label Content="{Binding IsActive}" Style="{StaticResource ResourceKey=labelStyle}"/>
+            <Ellipse Fill="#FFF4F4F5" 
+                     Height="20" 
+                     Stroke="Black" 
+                     Width="20"
+                     Margin="20"/>
+
+            <Button Content="Start/Stop" 
+                    Width="100" 
+                    Margin="10,30,10,5"
+                    Command="{Binding StartStopButtonCommand}"/>
+        </StackPanel>
+        <!--Endregion-->
+
+        <!--Region(Bid section)-->
+        <DockPanel LastChildFill="True" DockPanel.Dock="Left">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <Label Content="Total (to bid):"/>
+                <Label Content="{Binding TotalElementsInQueue}"/>
+            </StackPanel>
+
+            <DataGrid ItemsSource="{Binding BidCollection}">
+
+            </DataGrid>
+        </DockPanel>
+        <!--Endregion-->
+
+    </DockPanel>
+</UserControl>
